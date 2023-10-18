@@ -1,6 +1,5 @@
+{{ config(materialized="table") }}
 
--- Use the `ref` function to select from other models
-
+with two_pokemon as (select name from {{ ref('my_first_dbt_model') }} limit 2)
 select *
-from {{ ref('my_first_dbt_model') }}
-where id = 1
+from two_pokemon
